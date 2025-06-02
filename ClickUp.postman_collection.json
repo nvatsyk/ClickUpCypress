@@ -1,0 +1,3122 @@
+{
+	"info": {
+		"_postman_id": "7109eb99-717b-4738-a96c-9ec253637881",
+		"name": "ClickUp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3906141"
+	},
+	"item": [
+		{
+			"name": "Get Goals",
+			"item": [
+				{
+					"name": "Get all goals",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.test (\"Status code is 200\"),function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log \r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_L0YZMBOTUNSMKBVYSBJNWPP8WI0O2XZ7",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/team/90151136171/goal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"90151136171",
+								"goal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log (\"мій джейсон обджект\")\r",
+									"    console.log(jsonData.goal.id)\r",
+									"    console.log(\"вище мій обджект\")\r",
+									"    \r",
+									"\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = jsonData.goal.id\r",
+									"    console.log(id)\r",
+									"\r",
+									"    pm.environment.set(\"goal_id\", id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"{{$randomFirstName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/team/90151136171/goal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"90151136171",
+								"goal"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/team/90151136171/goal \\\r\n     --header 'Authorization: pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"gfgdfgd\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get goal by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Goal",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var name = pm.variables.replaceIn('{{$randomCompanyName}}');\r",
+									"console.log(\"Generated name:\", name);\r",
+									"pm.collectionVariables.set(\"Goal name\", name);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"check name is updated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var expectedName = pm.collectionVariables.get(\"Goal name\");\r",
+									"    console.log(\"Expected:\", expectedName);\r",
+									"    console.log(\"Actual:\", jsonData.goal.name);\r",
+									"    pm.expect(jsonData.goal.name).to.eql(expectedName);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"{{Goal name}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Goal",
+			"item": [
+				{
+					"name": "Create goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log (\"мій джейсон обджект\")\r",
+									"    console.log(jsonData.goal.id)\r",
+									"    console.log(\"вище мій обджект\")\r",
+									"    \r",
+									"\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = jsonData.goal.id\r",
+									"    console.log(id)\r",
+									"\r",
+									"    pm.environment.set(\"goal_id\", id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"{{$randomFirstName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/team/90151136171/goal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"90151136171",
+								"goal"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/team/90151136171/goal \\\r\n     --header 'Authorization: pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"gfgdfgd\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Goal",
+			"item": [
+				{
+					"name": "Create goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log (\"мій джейсон обджект\")\r",
+									"    console.log(jsonData.goal.id)\r",
+									"    console.log(\"вище мій обджект\")\r",
+									"    \r",
+									"\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = jsonData.goal.id\r",
+									"    console.log(id)\r",
+									"\r",
+									"    pm.environment.set(\"goal_id\", id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"{{$randomFirstName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/team/90151136171/goal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"90151136171",
+								"goal"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/team/90151136171/goal \\\r\n     --header 'Authorization: pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"gfgdfgd\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get goal by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update Goal",
+			"item": [
+				{
+					"name": "Create goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log (\"мій джейсон обджект\")\r",
+									"    console.log(jsonData.goal.id)\r",
+									"    console.log(\"вище мій обджект\")\r",
+									"    \r",
+									"\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = jsonData.goal.id\r",
+									"    console.log(id)\r",
+									"\r",
+									"    pm.environment.set(\"goal_id\", id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"{{$randomFirstName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/team/90151136171/goal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"90151136171",
+								"goal"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/team/90151136171/goal \\\r\n     --header 'Authorization: pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"gfgdfgd\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Goal",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var name = pm.variables.replaceIn('{{$randomCompanyName}}');\r",
+									"console.log(\"Generated name:\", name);\r",
+									"pm.collectionVariables.set(\"Goal name\", name);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"check name is updated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var expectedName = pm.collectionVariables.get(\"Goal name\");\r",
+									"    console.log(\"Expected:\", expectedName);\r",
+									"    console.log(\"Actual:\", jsonData.goal.name);\r",
+									"    pm.expect(jsonData.goal.name).to.eql(expectedName);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"{{Goal name}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get goal by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Goal",
+			"item": [
+				{
+					"name": "Create goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log (\"мій джейсон обджект\")\r",
+									"    console.log(jsonData.goal.id)\r",
+									"    console.log(\"вище мій обджект\")\r",
+									"    \r",
+									"\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = jsonData.goal.id\r",
+									"    console.log(id)\r",
+									"\r",
+									"    pm.environment.set(\"goal_id\", id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"{{$randomFirstName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/team/90151136171/goal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"90151136171",
+								"goal"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/team/90151136171/goal \\\r\n     --header 'Authorization: pk_188684470_9R2IE4VWCYUZJGJ4U2YZ2N7XXN7ZG6MU' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"multiple_owners\": true,\r\n  \"name\": \"gfgdfgd\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get goal by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goal/{{goal_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goal",
+								"{{goal_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Lists",
+			"item": [
+				{
+					"name": "Create list_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Extract and log the list id from the response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData.id);\r",
+									"    pm.environment.set(\"list_id\", jsonData.id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let timestamp = Date.now(); \r",
+									"let name = `List_${timestamp}`;  \r",
+									"pm.collectionVariables.set(\"name\", name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"name\": \"{{name}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"name\": \"Test create\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create list_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Extract and log the list id from the response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData.id);\r",
+									"    pm.environment.set(\"list_id_2\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let timestamp = Date.now(); // поточний час у мс\r",
+									"let name = `List_${timestamp}`; // створюємо унікальне ім’я\r",
+									"pm.collectionVariables.set(\"name\", name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_SRZVM12HFAYHZYOO2MWLAMQN0YTSMJUK"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"{{name}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"name\": \"Test create\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all lists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Print all list IDs\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"\r",
+									"    if (Array.isArray(jsonData.lists)) {\r",
+									"        console.log(\"List of IDs:\");\r",
+									"        jsonData.lists.forEach((list, index) => {\r",
+									"            console.log(`ID ${index + 1}:`, list.id);\r",
+									"        });\r",
+									"    } else {\r",
+									"        console.warn(\"No lists found in response.\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all lists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/folder/90156804523/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"folder",
+										"90156804523",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Jun 2025 10:34:38 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "x-received-from",
+									"value": "shard-prod-eu-west-1-3"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "expect-ct",
+									"value": "max-age=0"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "x-datadog-trace-id,server"
+								},
+								{
+									"key": "content-language",
+									"value": "en-US"
+								},
+								{
+									"key": "x-datadog-trace-id",
+									"value": "1528724340576829421"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "frame-ancestors 'self'"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, no-store"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "expires",
+									"value": "0"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "99"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1748860539"
+								},
+								{
+									"key": "Timing-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 01767ca4222611269352c4c93a41c338.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "IAD89-P4"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=86400"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "sI_5jeH43x8BgfX5KqPLSHL4r_gYwN0vGajhJyqb8x9hUOMsAFQBlQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"lists\": [\n        {\n            \"id\": \"901510890512\",\n            \"name\": \"Test create\",\n            \"orderindex\": 0,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510890523\",\n            \"name\": \"Test create12\",\n            \"orderindex\": 1,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510890659\",\n            \"name\": \"Test create11\",\n            \"orderindex\": 2,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510891061\",\n            \"name\": \"New_folder\",\n            \"orderindex\": 3,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510891072\",\n            \"name\": \"New_folder1\",\n            \"orderindex\": 4,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510891133\",\n            \"name\": \"{{$randomWord\",\n            \"orderindex\": 5,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510986907\",\n            \"name\": \"system\",\n            \"orderindex\": 6,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510986940\",\n            \"name\": \"solid\",\n            \"orderindex\": 7,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510986946\",\n            \"name\": \"Lira\",\n            \"orderindex\": 8,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510992993\",\n            \"name\": \"Internal Program Representative\",\n            \"orderindex\": 9,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510993003\",\n            \"name\": \"Beier\",\n            \"orderindex\": 10,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510993004\",\n            \"name\": \"Mraz\",\n            \"orderindex\": 11,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510993005\",\n            \"name\": \"Huels\",\n            \"orderindex\": 12,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510993006\",\n            \"name\": \"Watsica\",\n            \"orderindex\": 13,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901510993017\",\n            \"name\": \"Hand\",\n            \"orderindex\": 14,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003094\",\n            \"name\": \"Jones - Simonis\",\n            \"orderindex\": 15,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003096\",\n            \"name\": \"Mueller - Brekke\",\n            \"orderindex\": 16,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003368\",\n            \"name\": \"Bradtke\",\n            \"orderindex\": 17,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003437\",\n            \"name\": \"Upton\",\n            \"orderindex\": 18,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003449\",\n            \"name\": \"Herman\",\n            \"orderindex\": 19,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003540\",\n            \"name\": \"Graham\",\n            \"orderindex\": 20,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003586\",\n            \"name\": \"Fisher\",\n            \"orderindex\": 21,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003610\",\n            \"name\": \"Douglas\",\n            \"orderindex\": 22,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003681\",\n            \"name\": \"yttty\",\n            \"orderindex\": 23,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511003780\",\n            \"name\": \"206.79\",\n            \"orderindex\": 24,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511004071\",\n            \"name\": \"353.88\",\n            \"orderindex\": 25,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511004489\",\n            \"name\": \"19.37\",\n            \"orderindex\": 26,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511004525\",\n            \"name\": \"638.88\",\n            \"orderindex\": 27,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511005002\",\n            \"name\": \"880.53\",\n            \"orderindex\": 28,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511005004\",\n            \"name\": \"132.70\",\n            \"orderindex\": 29,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511480482\",\n            \"name\": \"570.76\",\n            \"orderindex\": 30,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511607904\",\n            \"name\": \"alarm\",\n            \"orderindex\": 31,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511607954\",\n            \"name\": \"892.85\",\n            \"orderindex\": 32,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511608008\",\n            \"name\": \"navigate\",\n            \"orderindex\": 33,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632016\",\n            \"name\": \"List_1748547850580\",\n            \"orderindex\": 34,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632082\",\n            \"name\": \"List_1748548046727\",\n            \"orderindex\": 35,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632167\",\n            \"name\": \"List_1748548310914\",\n            \"orderindex\": 36,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632264\",\n            \"name\": \"List_1748548527057\",\n            \"orderindex\": 37,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632270\",\n            \"name\": \"List_1748548534897\",\n            \"orderindex\": 38,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632360\",\n            \"name\": \"List_1748548716175\",\n            \"orderindex\": 39,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632367\",\n            \"name\": \"List_1748548728465\",\n            \"orderindex\": 40,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632631\",\n            \"name\": \"List_1748549367320\",\n            \"orderindex\": 41,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511632635\",\n            \"name\": \"List_1748549373259\",\n            \"orderindex\": 42,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696108\",\n            \"name\": \"Peso\",\n            \"orderindex\": 43,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696131\",\n            \"name\": \"Bacon\",\n            \"orderindex\": 44,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696242\",\n            \"name\": \"challenge\",\n            \"orderindex\": 45,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696308\",\n            \"name\": \"auto_ai_cheese.jpeg\",\n            \"orderindex\": 46,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696319\",\n            \"name\": \"overriding_swiss.jpe\",\n            \"orderindex\": 47,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696359\",\n            \"name\": \"demand_driven_legacy.jpeg\",\n            \"orderindex\": 48,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696379\",\n            \"name\": \"infomediaries\",\n            \"orderindex\": 49,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696531\",\n            \"name\": \"List_1748770844479\",\n            \"orderindex\": 50,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511696579\",\n            \"name\": \"List_1748770995782\",\n            \"orderindex\": 51,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511697290\",\n            \"name\": \"List_1748773048039\",\n            \"orderindex\": 52,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511709327\",\n            \"name\": \"test\",\n            \"orderindex\": 53,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        },\n        {\n            \"id\": \"901511710973\",\n            \"name\": \"test456\",\n            \"orderindex\": 55,\n            \"content\": \"\",\n            \"status\": null,\n            \"priority\": null,\n            \"assignee\": null,\n            \"task_count\": 0,\n            \"due_date\": null,\n            \"start_date\": null,\n            \"folder\": {\n                \"id\": \"90156804523\",\n                \"name\": \"Test folder September\",\n                \"hidden\": false,\n                \"access\": true\n            },\n            \"space\": {\n                \"id\": \"90154496787\",\n                \"name\": \"NewSpaceNat\",\n                \"access\": true\n            },\n            \"archived\": false,\n            \"override_statuses\": false,\n            \"permission_level\": \"create\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all lists_Invalid token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "pk_188684470_MO1T1WZCZLMN4JRGDMZHS9G8AK086V8Q",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all lists_empty token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all lists_invalid folder id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/folder/90156804524/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804524",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all lists_user is not a team member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "pk_194412956_2PZL7H2ZJNG9MVA7RCO5EYL285W452D7",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/folder/90156804524/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804524",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all lists_archived_false",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "pk_188684470_MO1T1WZCZLMN4JRGDMZHS9G8AK086V8T",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_L0YZMBOTUNSMKBVYSBJNWPP8WI0O2XZ7"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list?archived=false",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							],
+							"query": [
+								{
+									"key": "archived",
+									"value": "false"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\n     --url 'https://api.clickup.com/api/v2/folder/90156804523/list?archived=false' \\\n     --header 'Authorization: pk_188684470_L0YZMBOTUNSMKBVYSBJNWPP8WI0O2XZ7' \\\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete list_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/{{list_id_1}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{list_id_1}}"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510890515 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete list_2",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/{{list_id_2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{list_id_2}}"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510890515 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get list by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/list/{{list_id_1}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{list_id_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "pk_188684470_R2V08ARHI9367KPBJSP0936RI5729H8K",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Create List",
+			"item": [
+				{
+					"name": "Create list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"let createdId = responseData.id;\r",
+									"console.log(\"Created ID:\", createdId);\r",
+									"pm.collectionVariables.set(\"createdId\", createdId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let timestamp = Date.now(); \r",
+									"let name = `List_${timestamp}`; \r",
+									"pm.collectionVariables.set(\"name\", name);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"{{$randomWord}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"name\": \"New_folder\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/{{createdId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{createdId}}"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510891065 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create list_invalid folder id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"tytyty\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/5353453/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"5353453",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/5353453/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '{\"name\":\"tytyty\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create list without name",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json'"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{my_token}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get List",
+			"item": [
+				{
+					"name": "Create without token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50",
+								"disabled": true
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"QWERTY\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '{\"name\":\"QWERTY\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{$randomCompanyName}}\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '{\"name\":\"QWERTY\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/901510891101",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"901510891101"
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\r\n     --url https://api.clickup.com/api/v2/list/901510891101 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/{{createdId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{createdId}}"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510891101 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{my_token}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Update List",
+			"item": [
+				{
+					"name": "Create list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"let createdId = responseData.id;\r",
+									"console.log(\"Created ID:\", createdId);\r",
+									"pm.collectionVariables.set(\"createdId\", createdId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let timestamp = Date.now(); \r",
+									"let name = `List_${timestamp}`; \r",
+									"pm.collectionVariables.set(\"name\", name);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"{{$randomWord}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"name\": \"New_folder\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update List",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var name = pm.variables.replaceIn ('{{$randomJobTitle}}');\r",
+									"console.log(name)\r",
+									"pm.collectionVariables.set(\"List List name\", name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"check list name is updated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData); \r",
+									"    var expectedName = pm.collectionVariables.get(\"List List name\");\r",
+									"   pm.expect(jsonData.name).to.eql(expectedName);\r",
+									" \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_SRZVM12HFAYHZYOO2MWLAMQN0YTSMJUK"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{List List name}}\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list/901510891156",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"901510891156"
+							]
+						},
+						"description": "Generated from cURL: curl --request PUT \\\r\n     --url https://api.clickup.com/api/v2/list/901510891156 \\\r\n     --header 'Authorization: pk_188684470_SRZVM12HFAYHZYOO2MWLAMQN0YTSMJUK' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '{\"name\":\"SASA\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update List Iteration_data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is valid\"),function (){\r",
+									"    pm.response.to.have.status(pm.iterationData.get(\"Status_1\"));\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_SRZVM12HFAYHZYOO2MWLAMQN0YTSMJUK"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{Name_1}}\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list/901510891156",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"901510891156"
+							]
+						},
+						"description": "Generated from cURL: curl --request PUT \\\r\n     --url https://api.clickup.com/api/v2/list/901510891156 \\\r\n     --header 'Authorization: pk_188684470_SRZVM12HFAYHZYOO2MWLAMQN0YTSMJUK' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '{\"name\":\"SASA\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete List",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/{{createdId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{createdId}}"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510891183 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update List invalid token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "pk_188684470_SRZVM12HFAYHZYOO2MWLAMQN0YTSMJUN",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA51"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"due_date_time\": true,\r\n  \"unset_status\": true,\r\n  \"content\": \"Updated List Content\",\r\n  \"due_date\": 2025,\r\n  \"priority\": 2,\r\n  \"assignee\": \"manager\",\r\n  \"status\": \"red\",\r\n  \"name\": \"Updated Name\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v2/list/901510891156",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v2",
+								"list",
+								"901510891156"
+							]
+						},
+						"description": "Generated from cURL: curl --request PUT \\\r\n     --url https://api.clickup.com/api/v2/list/901510891156 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"due_date_time\": true,\r\n  \"unset_status\": true,\r\n  \"content\": \"Updated List Content\",\r\n  \"due_date\": 2025,\r\n  \"priority\": 2,\r\n  \"assignee\": \"manager\",\r\n  \"status\": \"red\",\r\n  \"name\": \"Updated Name\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update List without body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list/901510891156",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"901510891156"
+							]
+						},
+						"description": "Generated from cURL: curl --request PUT \\\r\n     --url https://api.clickup.com/api/v2/list/901510891156 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"due_date_time\": true,\r\n  \"unset_status\": true,\r\n  \"content\": \"Updated List Content\",\r\n  \"due_date\": 2025,\r\n  \"priority\": 2,\r\n  \"assignee\": \"manager\",\r\n  \"status\": \"red\",\r\n  \"name\": \"Updated Name\"\r\n}\r\n'"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{my_token}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Delete list",
+			"item": [
+				{
+					"name": "Create list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Extract and log the list id from the response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData.id);\r",
+									"    pm.environment.set(\"list_id\", jsonData.id);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let timestamp = Date.now(); \r",
+									"let name = `List_${timestamp}`;  \r",
+									"pm.collectionVariables.set(\"name\", name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{my_token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"name\": \"{{name}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/folder/90156804523/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"folder",
+								"90156804523",
+								"list"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\r\n     --url https://api.clickup.com/api/v2/folder/90156804523/list \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'accept: application/json' \\\r\n     --header 'content-type: application/json' \\\r\n     --data '\r\n{\r\n  \"name\": \"Test create\"\r\n}\r\n'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/{{createdId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"{{createdId}}"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510891183 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete List Invalid token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "56575675675675675675",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA51"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/list/901510891183",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"901510891183"
+							]
+						},
+						"description": "Generated from cURL: curl --request DELETE \\\r\n     --url https://api.clickup.com/api/v2/list/901510891183 \\\r\n     --header 'Authorization: pk_188684470_PJ9YW7LWWXTDVDO6A5Y5YG1YDHE5SA50' \\\r\n     --header 'Content-Type: application/json' \\\r\n     --header 'accept: application/json'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Folder",
+			"item": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{my_token}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Goal name",
+			"value": ""
+		},
+		{
+			"key": "List name",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "createdListId",
+			"value": ""
+		},
+		{
+			"key": "UpdatedListId",
+			"value": ""
+		},
+		{
+			"key": "List List name",
+			"value": ""
+		},
+		{
+			"key": "createdElementId",
+			"value": ""
+		},
+		{
+			"key": "createdListId2",
+			"value": ""
+		},
+		{
+			"key": "createdId",
+			"value": ""
+		}
+	]
+}

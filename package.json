@@ -1,0 +1,19 @@
+{
+  "name": "ClickUpCypress",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "cypress": "^14.4.0",
+    "prettier": "^3.3.1",
+    "vite": "^5.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
+}
